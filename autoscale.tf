@@ -1,11 +1,12 @@
 #Launching Configuration
 resource "aws_launch_configuration" "my_launchconfig" {
-  name_prefix   = "my_launchconfig"
-  image_id      = var.AMIS[var.AWS_REGION]
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.mykeypair.key_name
-  user_data     = "#!/bin/bash\nsudo yum update\nsudo yum -y install httpd\necho 'Example Page' > /var/www/html/index.html"
-   lifecycle {
+  name_prefix     = "my_launchconfig"
+  image_id        = var.AMIS[var.AWS_REGION]
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.instance_sg.id]
+  key_name        = aws_key_pair.mykeypair.key_name
+  user_data       = "#!/bin/bash\nsudo yum update\nsudo yum -y install httpd\necho 'Example Page' > /var/www/html/index.html"
+  lifecycle {
     create_before_destroy = true
   }
 

@@ -22,11 +22,11 @@ variable "AMIS" {
 }
 
 variable "MIN_SIZE" {
-	default = 2
+	default = 1
 	}
 variable "MAX_SIZE" {
 	default = 2
 	}
 variable "D_CAPACITY" {
-	default = 2
+	default = 1
 	}
